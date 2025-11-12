@@ -109,7 +109,7 @@
             <!-- <h1 class="display-6 text-primary">
               <i class="fas fa-car-alt me-3"></i>MD Taxi
             </h1> -->
-            <img src="img/logo/md-logo1.png" alt="Logo">
+            <img src="img/logo/md-logo1.png" alt="Logo" />
           </a>
           <button
             class="navbar-toggler"
@@ -147,7 +147,9 @@
                 >Contact</a
               >
             </div>
-            <a href="index.html#start" class="btn btn-primary rounded-pill py-2 px-4"
+            <a
+              href="index.html#start"
+              class="btn btn-primary rounded-pill py-2 px-4"
               >Get Started</a
             >
           </div>
@@ -258,7 +260,7 @@
           <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
             <div class="bg-secondary p-5 rounded">
               <h4 class="text-primary mb-4">Send Your Message</h4>
-              <form>
+              <form id="contactForm">
                 <div class="row g-4">
                   <div class="col-lg-12 col-xl-6">
                     <div class="form-floating">
@@ -319,6 +321,34 @@
                     <button class="btn btn-light w-100 py-3">
                       Send Message
                     </button>
+                  </div>
+                  <div
+                    id="successAlert"
+                    class="alert alert-success text-center mt-3"
+                    style="
+                      display: none;
+                      border-radius: 8px;
+                      background: #e8f9f1;
+                      color: #0d6832;
+                      border: 1px solid #b4f1cc;
+                    "
+                  >
+                    <strong>Message Sent!</strong> We’ve received your
+                    message and will contact you soon.
+                  </div>
+
+                  <div
+                    id="errorAlert"
+                    class="alert alert-danger text-center mt-3"
+                    style="
+                      display: none;
+                      border-radius: 8px;
+                      background: #fff1f1;
+                      color: #a10000;
+                      border: 1px solid #f7b4b4;
+                    "
+                  >
+                  Something went wrong. Please try again later.
                   </div>
                 </div>
               </form>
@@ -505,5 +535,6 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/email.js"></script>
   </body>
 </html>
