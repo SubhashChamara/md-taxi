@@ -16,7 +16,7 @@ document.getElementById("contactForm").addEventListener("submit", async function
   };
 
   try {
-    const response = await fetch("http://127.0.0.1:9091/api/v1/taxi/contact-email", {
+    const response = await fetch(`${CONFIG.BASE_URL}/api/v1/taxi/contact-email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
