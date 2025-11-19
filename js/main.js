@@ -123,7 +123,7 @@ document.getElementById("bookNowBtn").addEventListener("click", async () => {
         dropoff: document.getElementById("dropoffLocation").value
     };
 
-    const response = await fetch("http://localhost:8080/api/taxi/calculate", {
+    const response = await fetch(`${CONFIG.BASE_URL}/api/taxi/calculate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(request)
