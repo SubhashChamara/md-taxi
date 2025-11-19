@@ -116,3 +116,31 @@
 
 })(jQuery);
 
+document.getElementById("bookNowBtn").addEventListener("click", async () => {
+
+    const request = {
+        pickup: document.getElementById("pickupLocation").value,
+        dropoff: document.getElementById("dropoffLocation").value
+    };
+
+    const response = await fetch("http://localhost:8080/api/taxi/calculate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(request)
+    });
+
+    const result = await response.json();
+
+    // Fill backside UI
+    document.getElementById("qPickup").innerText = request.pickup;
+    document.getElementById("qDropoff").innerText = request.dropoff;
+    document.getElementById("qDistance").innerText = result.distance;
+    document.getElementById("qDuration").innerText = result.duration;
+    document.getElementById("qOldPrice").innerText = result.oldPrice;
+    document.getElementById("qNewPrice").innerText = result.newPrice;
+
+    // Flip card
+    document.querySelector(".flip-card").classList.add("flipped");
+});
+
+

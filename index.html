@@ -217,6 +217,7 @@
                                 <span class="ms-1">Pick Up</span>
                               </div>
                               <input
+                                id="pickupLocation"
                                 class="form-control"
                                 type="text"
                                 placeholder="Enter a City or Airport"
@@ -238,6 +239,7 @@
                                 ><span class="ms-1">Drop off</span>
                               </div>
                               <input
+                                id="dropoffLocation"
                                 class="form-control"
                                 type="text"
                                 placeholder="Enter a City or Airport"
@@ -269,7 +271,7 @@
                               </select>
                             </div>
                           </div>
-                          <div class="col-12">
+                          <div class="col-12 d-none">
                             <div class="input-group">
                               <div
                                 class="d-flex align-items-center bg-light text-body rounded-start p-2"
@@ -294,10 +296,12 @@
                             </div>
                           </div>
                           <div class="col-12">
-                            <button class="btn btn-light w-100 py-2">
-                              Book Now
-                            </button>
+                            <button id="bookNowBtn" type="button" class="btn btn-light w-100 py-2">Quote Now</button>
+
                           </div>
+
+                          <div id="resultBox"></div>
+
                         </div>
                       </form>
                     </div>
@@ -411,7 +415,7 @@
                               </select>
                             </div>
                           </div>
-                          <div class="col-12">
+                          <div class="col-12 d-none">
                             <div class="input-group">
                               <div
                                 class="d-flex align-items-center bg-light text-body rounded-start p-2"
@@ -1793,7 +1797,7 @@
             <!--/*** you can purchase the Credit Removal License from "https://zyntekdigital.com/credit-removal". ***/-->
             Designed By:
             <a class="border-bottom text-white" href="https://zyntekdigital.com"
-              >Technet</a 
+              >Technet</a
             >
             <span class="px-2"> </span>
             Powered By:
@@ -1821,8 +1825,12 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByuSulijNMA6GfxAFss1QuJ3iEQyrF1I8&libraries=places"></script>
+
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/place.js"></script>
+    <script src="js/booking.js"></script>
   </body>
 </html>
