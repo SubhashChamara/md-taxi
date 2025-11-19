@@ -13,7 +13,7 @@ document.getElementById("bookNowBtn").addEventListener("click", async () => {
 
   console.log("Sending to backend:", data);
 
-  const response = await fetch("http://localhost:9091/api/v1/taxi/distance", {
+  const response = await fetch(`${CONFIG.BASE_URL}/api/v1/taxi/distance`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
