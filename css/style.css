@@ -280,6 +280,7 @@
 /*** Features Start ***/
 .feature {
     background: var(--bs-light);
+    margin-top: 650px;
 }
 
 .feature .feature-item {
