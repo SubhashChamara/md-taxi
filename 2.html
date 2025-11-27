@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Card Editor - Tabbed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Smooth transitions for tab switching */
+        .tab-content { display: none; animation: fadeIn 0.3s ease-out; }
+        .tab-content.active { display: block; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 h-screen flex overflow-hidden text-slate-800">
+
+    <aside class="w-[70px] bg-slate-900 flex flex-col items-center py-6 z-30 shrink-0">
+        <div class="mb-8 text-white text-xl font-bold">B.</div>
+        <nav class="flex flex-col gap-4 w-full px-2">
+            <a href="#" class="h-10 w-full rounded-lg bg-white/10 flex items-center justify-center text-white"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="#" class="h-10 w-full rounded-lg hover:bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition"><i class="fa-solid fa-users"></i></a>
+        </nav>
+        <div class="mt-auto">
+            <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xs ring-2 ring-slate-800">SC</div>
+        </div>
+    </aside>
+
+    <section class="w-[380px] bg-slate-100 border-r border-slate-200 flex flex-col relative shrink-0 z-10 hidden lg:flex">
+        <header class="h-16 flex items-center justify-between px-6 border-b border-slate-200 bg-slate-100">
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Device Preview</span>
+        </header>
+        <div class="flex-1 flex items-center justify-center p-6">
+            <div class="relative h-[650px] w-[320px] bg-white rounded-[2.5rem] border-[6px] border-slate-800 shadow-2xl overflow-hidden flex flex-col ring-4 ring-slate-200">
+                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 h-5 w-24 bg-slate-800 rounded-b-lg z-20"></div>
+                <div class="h-full overflow-y-auto no-scrollbar relative">
+                    <div class="h-32 w-full bg-blue-600 relative overflow-hidden">
+                        <img src="https://via.placeholder.com/400x200/2563EB/FFFFFF?text=BANNER" class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="px-5 relative -mt-10 text-center">
+                        <div class="w-20 h-20 rounded-full border-4 border-white bg-slate-200 mx-auto shadow-sm overflow-hidden">
+                            <img src="https://via.placeholder.com/150" class="w-full h-full object-cover">
+                        </div>
+                        <h2 class="mt-2 text-lg font-bold text-slate-900">Subhash Chamara</h2>
+                        <p class="text-xs text-blue-600 font-bold uppercase tracking-wide mt-0.5">Software Engineer</p>
+                        <p class="text-[10px] text-slate-400 mt-1">Singer Sri Lanka</p>
+                    </div>
+                    <div class="p-4 space-y-2 mt-2">
+                        <div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-50 border border-slate-100 shadow-sm">
+                            <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xs"><i class="fa-solid fa-envelope"></i></div>
+                            <span class="text-xs font-medium text-slate-700">subhash@gmail.com</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-50 border border-slate-100 shadow-sm">
+                            <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xs"><i class="fa-solid fa-phone"></i></div>
+                            <span class="text-xs font-medium text-slate-700">071 2900 858</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="flex-1 bg-white flex flex-col relative min-w-[500px]">
+        
+        <header class="h-16 px-8 flex items-center justify-between border-b border-slate-100">
+            <div>
+                <h1 class="text-lg font-bold text-slate-900">Edit Card</h1>
+            </div>
+            <div class="flex gap-3">
+                <button class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-slate-800 transition">Discard</button>
+                <button class="px-6 py-2 text-sm font-bold text-white bg-slate-900 rounded-lg shadow-lg hover:bg-black transition">Publish</button>
+            </div>
+        </header>
+
+        <div class="px-8 pt-6 border-b border-slate-100">
+            <div class="flex gap-8">
+                <button onclick="switchTab('tab-profile')" id="btn-profile" class="tab-btn active pb-4 text-sm font-bold text-blue-600 border-b-2 border-blue-600 flex items-center gap-2 transition-colors">
+                    <i class="fa-regular fa-id-badge"></i> 1. User Details
+                </button>
+                <button onclick="switchTab('tab-visuals')" id="btn-visuals" class="tab-btn pb-4 text-sm font-medium text-slate-400 hover:text-slate-600 border-b-2 border-transparent hover:border-slate-200 flex items-center gap-2 transition-colors">
+                    <i class="fa-regular fa-image"></i> 2. Imagery
+                </button>
+                <button onclick="switchTab('tab-theme')" id="btn-theme" class="tab-btn pb-4 text-sm font-medium text-slate-400 hover:text-slate-600 border-b-2 border-transparent hover:border-slate-200 flex items-center gap-2 transition-colors">
+                    <i class="fa-solid fa-palette"></i> 3. Theme
+                </button>
+                <button onclick="switchTab('tab-contact')" id="btn-contact" class="tab-btn pb-4 text-sm font-medium text-slate-400 hover:text-slate-600 border-b-2 border-transparent hover:border-slate-200 flex items-center gap-2 transition-colors">
+                    <i class="fa-solid fa-address-book"></i> 4. Contact & Social
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-8 bg-slate-50/30">
+            <div class="max-w-3xl mx-auto">
+                
+                <div id="tab-profile" class="tab-content active">
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-lg"><i class="fa-regular fa-user"></i></div>
+                            <div>
+                                <h2 class="text-base font-bold text-slate-800">Profile Information</h2>
+                                <p class="text-xs text-slate-400">Basic details about you and your role.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">First Name</label>
+                                <input type="text" value="Subhash" class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Last Name</label>
+                                <input type="text" value="Chamara" class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition text-sm">
+                            </div>
+                            <div class="col-span-2">
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Job Title</label>
+                                <input type="text" value="Software Engineer" class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 outline-none transition text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Company</label>
+                                <input type="text" value="Singer Sri Lanka" class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 outline-none transition text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Department</label>
+                                <input type="text" value="IT Department" class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 outline-none transition text-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-visuals" class="tab-content">
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-8">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center text-lg"><i class="fa-regular fa-image"></i></div>
+                            <div>
+                                <h2 class="text-base font-bold text-slate-800">Card Imagery</h2>
+                                <p class="text-xs text-slate-400">Manage your profile picture and cover banner.</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="border border-slate-200 rounded-xl p-4 flex flex-col items-center justify-center bg-slate-50">
+                                <div class="w-24 h-24 rounded-full bg-slate-200 overflow-hidden mb-3 ring-4 ring-white shadow-sm">
+                                    <img src="https://via.placeholder.com/150" class="w-full h-full object-cover">
+                                </div>
+                                <button class="text-xs font-bold text-slate-600 bg-white border border-slate-300 px-3 py-1.5 rounded-lg hover:bg-slate-50">Change Avatar</button>
+                            </div>
+
+                            <div class="border border-slate-200 rounded-xl p-4 flex flex-col items-center justify-center bg-slate-50 relative overflow-hidden group cursor-pointer">
+                                <div class="absolute inset-0 bg-blue-600 opacity-20"></div>
+                                <i class="fa-solid fa-cloud-arrow-up text-2xl text-slate-400 mb-2 z-10"></i>
+                                <span class="text-xs font-bold text-slate-500 z-10">Upload Cover</span>
+                                <p class="text-[10px] text-slate-400 z-10 mt-1">Recommended: 800x400px</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Company Logo</label>
+                            <div class="flex items-center gap-4 p-4 border border-slate-200 rounded-xl bg-slate-50">
+                                <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm text-slate-300">
+                                    <i class="fa-solid fa-building"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-slate-700">Singer_Logo_Main.png</p>
+                                    <p class="text-xs text-slate-400">120kb • PNG</p>
+                                </div>
+                                <button class="text-slate-400 hover:text-red-500"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-theme" class="tab-content">
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-8">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-pink-50 text-pink-600 flex items-center justify-center text-lg"><i class="fa-solid fa-palette"></i></div>
+                            <div>
+                                <h2 class="text-base font-bold text-slate-800">Theme & Style</h2>
+                                <p class="text-xs text-slate-400">Customize colors and layout structure.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-3">Accent Color</label>
+                            <div class="flex flex-wrap gap-3">
+                                <button class="w-12 h-12 rounded-xl bg-blue-600 ring-2 ring-blue-600 ring-offset-2 flex items-center justify-center text-white shadow-md"><i class="fa-solid fa-check"></i></button>
+                                <button class="w-12 h-12 rounded-xl bg-red-600 hover:scale-105 transition"></button>
+                                <button class="w-12 h-12 rounded-xl bg-emerald-500 hover:scale-105 transition"></button>
+                                <button class="w-12 h-12 rounded-xl bg-purple-600 hover:scale-105 transition"></button>
+                                <button class="w-12 h-12 rounded-xl bg-slate-900 hover:scale-105 transition"></button>
+                                <button class="w-12 h-12 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 hover:border-slate-400 hover:text-slate-600 transition"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-3">Templates</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="border-2 border-blue-600 bg-blue-50/20 rounded-xl p-4 cursor-pointer relative">
+                                    <div class="absolute top-3 right-3 text-blue-600"><i class="fa-solid fa-circle-check"></i></div>
+                                    <span class="text-sm font-bold text-slate-800">Modern Grid</span>
+                                    <p class="text-xs text-slate-500 mt-1">Clean, centered layout with emphasis on the profile picture.</p>
+                                </div>
+                                <div class="border border-slate-200 hover:border-slate-300 bg-white rounded-xl p-4 cursor-pointer transition">
+                                    <span class="text-sm font-bold text-slate-800">Classic List</span>
+                                    <p class="text-xs text-slate-500 mt-1">Traditional top-down list view ideal for corporate use.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-contact" class="tab-content">
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center text-lg"><i class="fa-solid fa-address-book"></i></div>
+                                <div>
+                                    <h2 class="text-base font-bold text-slate-800">Contact Details</h2>
+                                    <p class="text-xs text-slate-400">Add methods for people to reach you.</p>
+                                </div>
+                            </div>
+                            <button class="text-xs font-bold bg-slate-900 text-white px-3 py-2 rounded-lg hover:bg-black transition flex items-center gap-2">
+                                <i class="fa-solid fa-plus"></i> Add Field
+                            </button>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-4 p-3 border border-slate-200 rounded-xl bg-white shadow-sm group hover:border-blue-400 transition cursor-grab active:cursor-grabbing">
+                                <div class="text-slate-300 cursor-grab"><i class="fa-solid fa-grip-vertical"></i></div>
+                                <div class="w-10 h-10 rounded-lg bg-red-50 text-red-500 flex items-center justify-center text-lg"><i class="fa-solid fa-envelope"></i></div>
+                                <div class="flex-1 grid grid-cols-3 gap-4">
+                                    <div class="col-span-1">
+                                        <label class="text-[10px] font-bold text-slate-400 uppercase">Label</label>
+                                        <input type="text" value="Email" class="w-full text-sm font-medium text-slate-700 outline-none bg-transparent">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label class="text-[10px] font-bold text-slate-400 uppercase">Value</label>
+                                        <input type="text" value="subhash@gmail.com" class="w-full text-sm font-medium text-slate-700 outline-none bg-transparent">
+                                    </div>
+                                </div>
+                                <button class="text-slate-300 hover:text-red-500 transition"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+
+                             <div class="flex items-center gap-4 p-3 border border-slate-200 rounded-xl bg-white shadow-sm group hover:border-blue-400 transition cursor-grab active:cursor-grabbing">
+                                <div class="text-slate-300 cursor-grab"><i class="fa-solid fa-grip-vertical"></i></div>
+                                <div class="w-10 h-10 rounded-lg bg-green-50 text-green-500 flex items-center justify-center text-lg"><i class="fa-brands fa-whatsapp"></i></div>
+                                <div class="flex-1 grid grid-cols-3 gap-4">
+                                    <div class="col-span-1">
+                                        <label class="text-[10px] font-bold text-slate-400 uppercase">Label</label>
+                                        <input type="text" value="WhatsApp" class="w-full text-sm font-medium text-slate-700 outline-none bg-transparent">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label class="text-[10px] font-bold text-slate-400 uppercase">Value</label>
+                                        <input type="text" value="+94 71 2900 858" class="w-full text-sm font-medium text-slate-700 outline-none bg-transparent">
+                                    </div>
+                                </div>
+                                <button class="text-slate-300 hover:text-red-500 transition"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-6 border-t border-slate-100">
+                             <p class="text-xs font-bold text-slate-400 uppercase mb-3">Social Links</p>
+                             <div class="flex gap-3">
+                                <button class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition"><i class="fa-brands fa-facebook-f"></i></button>
+                                <button class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-blue-400 hover:text-white hover:border-blue-400 transition"><i class="fa-brands fa-linkedin-in"></i></button>
+                                <button class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition"><i class="fa-brands fa-youtube"></i></button>
+                                <button class="px-3 rounded-full border border-dashed border-slate-300 text-xs font-bold text-slate-400 hover:border-slate-400 hover:text-slate-600 transition">+ Add</button>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function switchTab(tabId) {
+            // 1. Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            
+            // 2. Remove active styling from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-blue-600', 'border-blue-600', 'font-bold');
+                btn.classList.add('text-slate-400', 'border-transparent', 'font-medium');
+            });
+
+            // 3. Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+
+            // 4. Add active styling to clicked button
+            const activeBtn = document.querySelector(`button[onclick="switchTab('${tabId}')"]`);
+            activeBtn.classList.remove('text-slate-400', 'border-transparent', 'font-medium');
+            activeBtn.classList.add('text-blue-600', 'border-blue-600', 'font-bold');
+        }
+    </script>
+</body>
+</html>

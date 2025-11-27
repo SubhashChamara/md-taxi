@@ -517,6 +517,7 @@
 .categories-carousel .owl-stage-outer {
     margin-top: 65px;
     margin-right: -1px;
+    display: block;
 }
 
 .categories-carousel .owl-nav .owl-prev,

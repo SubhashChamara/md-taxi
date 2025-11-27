@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Card Editor - Expanded Nav</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Tab Animations */
+        .tab-content { display: none; animation: fadeIn 0.3s ease-out; }
+        .tab-content.active { display: block; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 h-screen flex overflow-hidden text-slate-800">
+
+    <aside class="w-[260px] bg-white border-r border-slate-200 flex flex-col z-30 shrink-0 h-full">
+        
+        <div class="h-16 flex items-center justify-between px-5">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">B</div>
+                <span class="font-bold text-xl text-slate-900">Blinq</span>
+            </div>
+            <button class="text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-angles-left"></i>
+            </button>
+        </div>
+
+        <div class="px-4 mb-6">
+            <div class="flex items-center justify-between p-2 border border-slate-200 rounded-lg hover:border-slate-300 cursor-pointer transition bg-white shadow-sm">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center text-red-500 font-bold text-sm border border-red-100">S</div>
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-semibold text-slate-800 truncate w-28">Subhash Chamara</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
+            </div>
+        </div>
+
+        <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 bg-slate-100 text-slate-900 rounded-md font-medium">
+                <i class="fa-solid fa-id-card w-5 text-center text-slate-600"></i>
+                <span class="text-sm">Cards</span>
+            </a>
+            
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md transition font-medium">
+                <i class="fa-solid fa-envelope w-5 text-center"></i>
+                <span class="text-sm">Email Signatures</span>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md transition font-medium">
+                <i class="fa-solid fa-image w-5 text-center"></i>
+                <span class="text-sm">Virtual Backgrounds</span>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md transition font-medium">
+                <i class="fa-solid fa-bag-shopping w-5 text-center"></i>
+                <span class="text-sm">Accessories</span>
+            </a>
+
+            <div class="py-2">
+                <div class="border-t border-slate-100 mx-2"></div>
+            </div>
+
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md transition font-medium">
+                <i class="fa-solid fa-address-book w-5 text-center"></i>
+                <span class="text-sm">Contacts</span>
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-100">
+             <a href="#" class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-800 text-sm font-medium">
+                <i class="fa-solid fa-gear w-5 text-center"></i> Settings
+             </a>
+        </div>
+    </aside>
+
+    <section class="w-[380px] bg-slate-100 border-r border-slate-200 flex flex-col relative shrink-0 z-10 hidden xl:flex">
+        <header class="h-16 flex items-center justify-between px-6 border-b border-slate-200 bg-slate-100">
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Device Preview</span>
+            <div class="flex gap-2">
+                 <button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500"><i class="fa-solid fa-desktop"></i></button>
+                 <button class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm text-slate-800"><i class="fa-solid fa-mobile-screen"></i></button>
+            </div>
+        </header>
+        <div class="flex-1 flex items-center justify-center p-6">
+            <div class="relative h-[650px] w-[320px] bg-white rounded-[2.5rem] border-[6px] border-slate-800 shadow-2xl overflow-hidden flex flex-col ring-4 ring-slate-200">
+                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 h-5 w-24 bg-slate-800 rounded-b-lg z-20"></div>
+                <div class="h-full overflow-y-auto no-scrollbar relative">
+                    <div class="h-32 w-full bg-red-600 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/10"></div>
+                        <div class="absolute bottom-2 right-2 text-white/80 text-[10px] font-bold tracking-widest">SINGER</div>
+                    </div>
+                    <div class="px-5 relative -mt-10 text-center">
+                        <div class="w-20 h-20 rounded-full border-4 border-white bg-slate-200 mx-auto shadow-sm overflow-hidden">
+                            <img src="https://via.placeholder.com/150" class="w-full h-full object-cover">
+                        </div>
+                        <h2 class="mt-2 text-lg font-bold text-slate-900">Subhash Chamara</h2>
+                        <p class="text-xs text-red-600 font-bold uppercase tracking-wide mt-0.5">Software Engineer</p>
+                        <p class="text-[10px] text-slate-400 mt-1">Singer Sri Lanka</p>
+                    </div>
+                    <div class="p-4 space-y-2 mt-2">
+                        <div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-50 border border-slate-100 shadow-sm">
+                            <div class="w-8 h-8 rounded-full bg-red-50 text-red-600 flex items-center justify-center text-xs"><i class="fa-solid fa-envelope"></i></div>
+                            <span class="text-xs font-medium text-slate-700">subhash@gmail.com</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-50 border border-slate-100 shadow-sm">
+                            <div class="w-8 h-8 rounded-full bg-red-50 text-red-600 flex items-center justify-center text-xs"><i class="fa-solid fa-phone"></i></div>
+                            <span class="text-xs font-medium text-slate-700">071 2900 858</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="flex-1 bg-white flex flex-col relative min-w-[500px]">
+        
+        <header class="h-16 px-8 flex items-center justify-between border-b border-slate-100">
+            <div>
+                <div class="flex items-center gap-2 text-xs text-slate-500 mb-1">
+                    <span>Cards</span> <i class="fa-solid fa-chevron-right text-[10px]"></i> <span>Personal</span>
+                </div>
+                <h1 class="text-lg font-bold text-slate-900">Edit Card</h1>
+            </div>
+            <div class="flex gap-3">
+                <button class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-slate-800 transition">Discard</button>
+                <button class="px-6 py-2 text-sm font-bold text-white bg-slate-900 rounded-lg shadow-lg hover:bg-black transition">Publish</button>
+            </div>
+        </header>
+
+        <div class="px-8 pt-6 border-b border-slate-100 bg-white z-10">
+            <div class="flex gap-8">
+                <button onclick="switchTab('tab-profile')" id="btn-profile" class="tab-btn active pb-4 text-sm font-bold text-red-600 border-b-2 border-red-600 flex items-center gap-2 transition-colors">
+                    <i class="fa-regular fa-id-badge"></i> Details
+                </button>
+                <button onclick="switchTab('tab-visuals')" id="btn-visuals" class="tab-btn pb-4 text-sm font-medium text-slate-400 hover:text-slate-600 border-b-2 border-transparent hover:border-slate-200 flex items-center gap-2 transition-colors">
+                    <i class="fa-regular fa-image"></i> Images
+                </button>
+                <button onclick="switchTab('tab-theme')" id="btn-theme" class="tab-btn pb-4 text-sm font-medium text-slate-400 hover:text-slate-600 border-b-2 border-transparent hover:border-slate-200 flex items-center gap-2 transition-colors">
+                    <i class="fa-solid fa-palette"></i> Theme
+                </button>
+                <button onclick="switchTab('tab-contact')" id="btn-contact" class="tab-btn pb-4 text-sm font-medium text-slate-400 hover:text-slate-600 border-b-2 border-transparent hover:border-slate-200 flex items-center gap-2 transition-colors">
+                    <i class="fa-solid fa-address-book"></i> Fields
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-8 bg-slate-50/30 scroll-smooth">
+            <div class="max-w-3xl mx-auto">
+                
+                <div id="tab-profile" class="tab-content active">
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center text-lg"><i class="fa-regular fa-user"></i></div>
+                            <div>
+                                <h2 class="text-base font-bold text-slate-800">User Details</h2>
+                                <p class="text-xs text-slate-400">Primary information for the card.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">First Name</label>
+                                <input type="text" value="Subhash" class="w-full px-4 py-2.5 rounded-lg bg-slate-50 border border-slate-200 focus:bg-white focus:border-red-500 focus:ring-4 focus:ring-red-500/10 outline-none transition text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Last Name</label>
+                                <input type="text" value="Chamara" class="w-full px-4 py-2.5 rounded-lg bg-slate-50 border border-slate-200 focus:bg-white focus:border-red-500 focus:ring-4 focus:ring-red-500/10 outline-none transition text-sm">
+                            </div>
+                            <div class="col-span-2">
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Professional Title</label>
+                                <input type="text" value="Software Engineer" class="w-full px-4 py-2.5 rounded-lg bg-slate-50 border border-slate-200 focus:bg-white focus:border-red-500 outline-none transition text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Company</label>
+                                <input type="text" value="Singer Sri Lanka" class="w-full px-4 py-2.5 rounded-lg bg-slate-50 border border-slate-200 focus:bg-white focus:border-red-500 outline-none transition text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Department</label>
+                                <input type="text" value="IT Department" class="w-full px-4 py-2.5 rounded-lg bg-slate-50 border border-slate-200 focus:bg-white focus:border-red-500 outline-none transition text-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-visuals" class="tab-content">
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-8">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-lg"><i class="fa-regular fa-image"></i></div>
+                            <div>
+                                <h2 class="text-base font-bold text-slate-800">Images & Branding</h2>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="border border-slate-200 rounded-xl p-6 flex flex-col items-center justify-center bg-slate-50 text-center hover:border-red-300 transition group cursor-pointer">
+                                <div class="w-20 h-20 rounded-full bg-slate-200 overflow-hidden mb-3 ring-4 ring-white shadow-sm">
+                                    <img src="https://via.placeholder.com/150" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition">
+                                </div>
+                                <span class="text-xs font-bold text-slate-600">Profile Photo</span>
+                            </div>
+
+                            <div class="border border-slate-200 rounded-xl p-6 flex flex-col items-center justify-center bg-slate-50 relative overflow-hidden group cursor-pointer hover:border-red-300 transition">
+                                <div class="absolute inset-0 bg-red-600 opacity-10 group-hover:opacity-20 transition"></div>
+                                <i class="fa-solid fa-cloud-arrow-up text-2xl text-red-400 mb-2 z-10"></i>
+                                <span class="text-xs font-bold text-slate-600 z-10">Cover Banner</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-theme" class="tab-content">
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-8">
+                         <h2 class="text-base font-bold text-slate-800 mb-4">Color Theme</h2>
+                         <div class="flex gap-3">
+                            <button class="w-10 h-10 rounded-full bg-red-600 ring-2 ring-red-600 ring-offset-2 flex items-center justify-center text-white shadow-md"><i class="fa-solid fa-check"></i></button>
+                            <button class="w-10 h-10 rounded-full bg-blue-600 hover:scale-110 transition"></button>
+                            <button class="w-10 h-10 rounded-full bg-black hover:scale-110 transition"></button>
+                            <button class="w-10 h-10 rounded-full border border-dashed border-slate-300 flex items-center justify-center text-slate-400 hover:border-slate-500"><i class="fa-solid fa-plus"></i></button>
+                         </div>
+                    </div>
+                </div>
+                
+                <div id="tab-contact" class="tab-content">
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-base font-bold text-slate-800">Active Fields</h2>
+                            <button class="text-xs font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded hover:bg-red-100">+ Add New</button>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 p-3 border border-slate-200 rounded-xl bg-white hover:border-red-300 transition group cursor-grab">
+                            <i class="fa-solid fa-grip-lines text-slate-300"></i>
+                            <div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="flex-1">
+                                <p class="text-[10px] font-bold text-slate-400 uppercase">Email</p>
+                                <p class="text-sm font-medium text-slate-700">subhash@gmail.com</p>
+                            </div>
+                            <i class="fa-solid fa-pen text-slate-300 hover:text-slate-600 cursor-pointer"></i>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 border border-slate-200 rounded-xl bg-white hover:border-red-300 transition group cursor-grab">
+                            <i class="fa-solid fa-grip-lines text-slate-300"></i>
+                            <div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500"><i class="fa-solid fa-phone"></i></div>
+                            <div class="flex-1">
+                                <p class="text-[10px] font-bold text-slate-400 uppercase">Mobile</p>
+                                <p class="text-sm font-medium text-slate-700">071 2900 858</p>
+                            </div>
+                            <i class="fa-solid fa-pen text-slate-300 hover:text-slate-600 cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-red-600', 'border-red-600', 'font-bold');
+                btn.classList.add('text-slate-400', 'border-transparent', 'font-medium');
+            });
+            document.getElementById(tabId).classList.add('active');
+            const activeBtn = document.querySelector(`button[onclick="switchTab('${tabId}')"]`);
+            activeBtn.classList.remove('text-slate-400', 'border-transparent', 'font-medium');
+            activeBtn.classList.add('text-red-600', 'border-red-600', 'font-bold');
+        }
+    </script>
+</body>
+</html>
